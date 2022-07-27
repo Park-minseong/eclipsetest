@@ -16,7 +16,7 @@ public class BoardApi {
 	BoardService boardService;
 	
 	@GetMapping("/api/pageboardlist")
-	public Page<Board> pageBoardList(@PageableDefault(page = 0, size = 10) Pageable pageable,
+	public Page<Board> pageBoardList(@PageableDefault(page = 0, size = 10) Pageable pageable, 
 			Board board) {
 		return boardService.getBoardList(board, pageable);
 	}
