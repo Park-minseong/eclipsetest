@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	  <head>
+	  	<meta charset="UTF-8">
+	  	<title>header</title>
+	  </head>
+	  <body>
+	  	<header th:fragment="header" style="display: flex; justify-content: space-around; align-items: center; background: orange;">
+		<h1 style="display:inline-block; text-align: center;">
+			<a th:href="@{/}" >
+				홈
+			</a>
+		</h1>
+		<nav style=" display: flex; justify-content: center;">
+			<ul class="main-nav" style="padding: 0;">
+				<li>
+					<a href="/board/getBoardList">게시글 목록</a>
+				</li>
+			</ul>
+		</nav>
+		<nav style="  display: flex; justify-content: center;">
+			<ul class="user-nav" style="padding: 0;">
+				<div sec:authorize="!isAuthenticated()" th:remove="tag">
+					<li>
+						<a href="/user/login">로그인</a>
+					</li>
+					<li>
+						<a href="/user/join">회원가입</a>
+					</li>
+				</div>
+				<div sec:authorize="isAuthenticated()" th:remove="tag">
+					<li>
+						<a href="/user/mypage" sec:authentication="principal.username"></a>
+					</li>
+					<li>
+						<a href="/user/logout">로그아웃</a>
+					</li>
+				</div>
+			</ul>
+		</nav>
+	</header>
+	  </body>
+</html>
